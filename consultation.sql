@@ -2,10 +2,10 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Хост: 127.0.0.1:3306
--- Время создания: Янв 23 2023 г., 15:40
--- Версия сервера: 8.0.30
--- Версия PHP: 7.2.34
+-- Хост: mysql
+-- Время создания: Янв 24 2023 г., 15:11
+-- Версия сервера: 8.0.29
+-- Версия PHP: 8.0.24
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- База данных: `consultation`
+-- База данных: `ais_usarov1294_consultation`
 --
 
 -- --------------------------------------------------------
@@ -38,8 +38,8 @@ CREATE TABLE `calendar` (
 --
 
 INSERT INTO `calendar` (`id`, `id_user`, `id_event`) VALUES
-(1, 1, 1),
-(2, 2, 2);
+(6, 1, 15),
+(7, 2, 16);
 
 -- --------------------------------------------------------
 
@@ -58,8 +58,8 @@ CREATE TABLE `event` (
 --
 
 INSERT INTO `event` (`id`, `appointment date`, `meeting time`) VALUES
-(1, '2022-12-21', '15:00:00'),
-(2, '2022-12-07', '16:00:00');
+(15, '2023-01-12', '21:27:00'),
+(16, '2023-01-19', '23:38:00');
 
 -- --------------------------------------------------------
 
@@ -71,16 +71,17 @@ CREATE TABLE `user` (
   `id` int NOT NULL COMMENT 'id',
   `name` varchar(255) NOT NULL COMMENT 'имя',
   `surname` varchar(255) NOT NULL COMMENT 'фамилия',
-  `email` varchar(255) NOT NULL COMMENT 'номер телефона'
+  `email` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8_general_ci NOT NULL COMMENT 'почта',
+  `password` varchar(255) NOT NULL COMMENT 'пароль'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Дамп данных таблицы `user`
 --
 
-INSERT INTO `user` (`id`, `name`, `surname`, `email`) VALUES
-(1, 'Рустам', 'Усаров', 'usarov@edu.surgu.ru'),
-(2, 'Василий', 'Петров', 'petrov@mail.ru');
+INSERT INTO `user` (`id`, `name`, `surname`, `email`, `password`) VALUES
+(1, 'Рустам', 'Усаров', 'usarov@edu.surgu.ru', '12345'),
+(2, 'Василий', 'Петров', 'petrov@mail.ru', '56789');
 
 --
 -- Индексы сохранённых таблиц
@@ -114,13 +115,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT для таблицы `calendar`
 --
 ALTER TABLE `calendar`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT COMMENT 'id', AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT COMMENT 'id', AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT для таблицы `event`
 --
 ALTER TABLE `event`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT COMMENT 'id', AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT COMMENT 'id', AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT для таблицы `user`
