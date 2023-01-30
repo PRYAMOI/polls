@@ -42,14 +42,18 @@
             <h2>Добавить бронь</h2>
         </div>
         <form method="post" action="insertcategory.php" enctype="multipart/form-data">
+            <div class="mb-3">
+                <h5 for="event">Комментарий:</h5>
+                <input type="text" required placeholder="Комментарий"  name="comment" class="form-control" id="event">
+            </div>
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <h5 for="start">Дата записи:</h5>
-                    <input type="date" name="appointment date" class="form-control"  id="start">
+                    <input type="date" required placeholder="Дата записи" name="appointment date" class="form-control"  id="start">
                 </div>
                 <div class="col-md-6 mb-3">
                     <h5 for="end" >Время записи:</h5>
-                    <input type="time" name="meeting time" class="form-control"  id="end">
+                    <input type="time" required placeholder="Время записи" name="meeting time" class="form-control"  id="end">
                 </div>
             </div>
 
@@ -65,15 +69,15 @@
     $idUser = $_SESSION['id'];
     $result = $conn->query("SELECT * FROM calendar, event, user WHERE event.id = calendar.id_event AND user.id = calendar.id_user ");
     echo '<tr>';
-    echo '<th>' . 'Id'  . '</th><th>' . 'Дата записи' . '</th><th>' . 'Время записи' . '</th>';
+    echo '<th>' . 'Id'  . '</th><th>' . 'Дата записи' . '</th><th>' . 'Время записи' . '</th><th>'. 'Комментарий' . '</th>';
     echo '<th>' . 'Пользователь' . '</th>' . '<th>' . 'Изображение' . '</th>';
     echo '</tr>';
     while ($row = $result->fetch()) {
         $id_event = $row['id_event'];
         echo '<tr>';
-        echo '<td>' . $id_event . '</td><td>'  . $row['appointment date'] . '</td><td>' . $row['meeting time'] . '</td>';
+        echo '<td>' . $id_event . '</td><td>'  . $row['appointment date'] . '</td><td>' . $row['meeting time'] . '</td><td>' . $row['comment'] . '</td>';
         echo '<td>' . $row['name'] . '</td>';
-        echo '<td> <img src="'.$row['picture_url'].'" alt="twbs" width="64" height="64"> </td>';
+        echo '<td> <img src="'.$row['img'].'" alt="twbs" width="64" height="64"> </td>';
         echo '<td><a class="btn ml-2 mr-2 btn-dark" style="height:35px; font-size:14px;" href=deletecategory.php?id_event=' . $id_event . '>Удалить</a></td>';
         echo '</tr>';
     }

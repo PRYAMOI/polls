@@ -21,10 +21,11 @@ use scr\Container;
  //   $picture_url = '/../calendar.png';
 //}
 try {
-    $sql = 'INSERT INTO event(`appointment date`, `meeting time`) VALUES(:appointment_date, :meeting_time)';
+    $sql = 'INSERT INTO event(`appointment date`, `meeting time`, comment) VALUES(:appointment_date, :meeting_time, :comment)';
     $stmt = $conn->prepare($sql);
     var_dump($stmt->bindValue(':appointment_date', $_POST['appointment_date'], PDO::PARAM_STR));
     var_dump($stmt->bindValue(':meeting_time', $_POST['meeting_time'], PDO::PARAM_STR));
+    var_dump($stmt->bindValue(':comment', $_POST['comment'], PDO::PARAM_STR));
     $stmt->execute();
 
     $sql = 'INSERT INTO calendar(id_user, id_event) VALUES(:id_user, (SELECT MAX(`id`) FROM event))';
