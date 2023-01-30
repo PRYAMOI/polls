@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: mysql
--- Время создания: Янв 24 2023 г., 15:11
+-- Время создания: Янв 30 2023 г., 12:53
 -- Версия сервера: 8.0.29
 -- Версия PHP: 8.0.24
 
@@ -38,8 +38,8 @@ CREATE TABLE `calendar` (
 --
 
 INSERT INTO `calendar` (`id`, `id_user`, `id_event`) VALUES
-(6, 1, 15),
-(7, 2, 16);
+(30, 2, 44),
+(31, 29, 45);
 
 -- --------------------------------------------------------
 
@@ -50,16 +50,17 @@ INSERT INTO `calendar` (`id`, `id_user`, `id_event`) VALUES
 CREATE TABLE `event` (
   `id` int NOT NULL COMMENT 'id',
   `appointment date` date NOT NULL COMMENT 'дата',
-  `meeting time` time NOT NULL COMMENT 'время'
+  `meeting time` time NOT NULL COMMENT 'время',
+  `comment` varchar(255) NOT NULL COMMENT 'комментарий'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Дамп данных таблицы `event`
 --
 
-INSERT INTO `event` (`id`, `appointment date`, `meeting time`) VALUES
-(15, '2023-01-12', '21:27:00'),
-(16, '2023-01-19', '23:38:00');
+INSERT INTO `event` (`id`, `appointment date`, `meeting time`, `comment`) VALUES
+(44, '2023-01-10', '21:52:00', 'qwe'),
+(45, '2023-01-07', '22:40:00', 'qwe');
 
 -- --------------------------------------------------------
 
@@ -72,16 +73,19 @@ CREATE TABLE `user` (
   `name` varchar(255) NOT NULL COMMENT 'имя',
   `surname` varchar(255) NOT NULL COMMENT 'фамилия',
   `email` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8_general_ci NOT NULL COMMENT 'почта',
-  `password` varchar(255) NOT NULL COMMENT 'пароль'
+  `password` varchar(255) NOT NULL COMMENT 'пароль',
+  `img` text CHARACTER SET utf8mb3 COLLATE utf8_general_ci COMMENT 'аватар'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 --
 -- Дамп данных таблицы `user`
 --
 
-INSERT INTO `user` (`id`, `name`, `surname`, `email`, `password`) VALUES
-(1, 'Рустам', 'Усаров', 'usarov@edu.surgu.ru', '12345'),
-(2, 'Василий', 'Петров', 'petrov@mail.ru', '56789');
+INSERT INTO `user` (`id`, `name`, `surname`, `email`, `password`, `img`) VALUES
+(1, 'Рустам', 'Усаров', 'usarov@edu.surgu.ru', '12345', NULL),
+(2, 'Василий', 'Петров', 'petrov@mail.ru', '56789', NULL),
+(28, 'zxc', 'zxc', 'zxc', 'zxc', NULL),
+(29, 'qwe', 'qwe', 'qwe', 'qwe', '/../calendar.jpg');
 
 --
 -- Индексы сохранённых таблиц
@@ -115,19 +119,19 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT для таблицы `calendar`
 --
 ALTER TABLE `calendar`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT COMMENT 'id', AUTO_INCREMENT=8;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT COMMENT 'id', AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT для таблицы `event`
 --
 ALTER TABLE `event`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT COMMENT 'id', AUTO_INCREMENT=17;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT COMMENT 'id', AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT для таблицы `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT COMMENT 'id', AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT COMMENT 'id', AUTO_INCREMENT=30;
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
